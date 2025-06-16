@@ -1,0 +1,204 @@
+/* Aquí puedes importar tu fuente Deltarune-like */
+/* Por ejemplo, si tienes un archivo 'determination.ttf' en la misma carpeta: */
+@font-face {
+    font-family: '8bitOperatorPlus-Bold';
+    src: url('https://deltarune.com/assets/fonts/8bitOperatorPlus-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    background-color: #000; /* Fondo negro */
+    color: #fff; /* Texto blanco */
+    font-family: '8bitOperatorPlus-Bold', monospace; /* Usa tu fuente, o monospace como fallback */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    overflow: hidden; /* Oculta el scrollbar si las imágenes se salen un poco */
+    position: relative; /* Para posicionar las imágenes laterales */
+}
+
+.container {
+    text-align: center;
+    z-index: 10; /* Asegura que el contenido principal esté por encima de las imágenes laterales */
+}
+
+/* Animación para que el título baje desde arriba */
+@keyframes slideDown {
+    0% {
+        transform: translateY(-100%); /* Comienza 100% de su altura por encima de su posición original */
+        opacity: 0; /* Totalmente invisible al inicio */
+    }
+    100% {
+        transform: translateY(0); /* Termina en su posición original */
+        opacity: 1; /* Totalmente visible al final */
+    }
+}
+
+#pageTitle {
+    font-size: 5em;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px #555; /* Efecto de sombra para el texto */
+    animation: slideDown 2.5s ease-out forwards; /* Nombre, duración, tipo de easing, y forwards para que se quede al final */
+    opacity: 0; /* Inicia invisible para que la animación lo haga aparecer */
+}
+
+#pageSubtitle {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    color: #e5ff00;
+    text-decoration-color: #7f8d00;
+    animation: tilt-n-move-shaking 1s infinite;
+}
+
+@keyframes tilt-n-move-shaking {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(5px, 5px) rotate(5deg); }
+  50% { transform: translate(0, 0) rotate(0eg); }
+  75% { transform: translate(-5px, 5px) rotate(-5deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+.countdown-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Espacio entre los elementos del contador */
+    font-size: 4em;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+}
+
+.countdown-item {
+    text-align: center;
+    line-height: 1.2;
+}
+
+.countdown-item span {
+    display: block;
+    font-size: 1.2em; /* Tamaño para los números */
+}
+
+.countdown-item br {
+    display: none; /* Oculta el <br> original, usamos display:block para el texto */
+}
+
+.countdown-item:last-child {
+    margin-right: 0;
+}
+
+/* Animación para la imagen flotante */
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-15px); /* Se mueve 15px hacia arriba */
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* Aplica la animación a la imagen inferior */
+#bottomImage {
+    max-width: 80%;
+    height: auto;
+    margin-top: -20px;
+    /* border: 2px solid #fff; */ /* Comentado porque tu CSS original no lo tenía */
+    /* box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); */ /* Comentado porque tu CSS original no lo tenía */
+    animation: float 3s ease-in-out infinite; /* Nombre de la animación, duración, tipo de easing, repetición infinita */
+}
+
+/* Animación para que las imágenes laterales entren desde los bordes */
+@keyframes slideInLeft {
+    0% {
+        transform: translateX(-100%) translateY(-50%); /* Comienza fuera de la pantalla a la izquierda */
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0) translateY(-50%); /* Termina en su posición original */
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    0% {
+        transform: translateX(100%) translateY(-50%); /* Comienza fuera de la pantalla a la derecha */
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0) translateY(-50%); /* Termina en su posición original */
+        opacity: 1;
+    }
+}
+
+.side-image {
+    position: absolute;
+    top: 50%;
+    height: 100vh; /* Ocupa la altura completa de la ventana */
+    width: auto;
+    object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+    opacity: 0; /* Aseguramos que inicie invisible */
+    z-index: 5; /* Asegura que estén detrás del contenido principal */
+}
+
+.side-image.left {
+    left: 0;
+    animation: slideInLeft 2.5s ease-out forwards; /* Duración y easing */
+    animation-delay: 0.5s; /* Retrasa el inicio de la animación 0.5 segundos */
+}
+
+.side-image.right {
+    right: 0;
+    animation: slideInRight 2.5s ease-out forwards; /* Duración y easing */
+    animation-delay: 0.5s; /* Retrasa el inicio de la animación 0.5 segundos */
+}
+
+/* Media Queries para responsividad */
+@media (max-width: 768px) {
+    #pageTitle {
+        font-size: 2em;
+    }
+
+    .countdown {
+        font-size: 2.5em;
+        gap: 10px;
+    }
+
+    .countdown-item span {
+        font-size: 1em;
+    }
+
+    .side-image {
+        height: 70vh; /* Ajustar altura para pantallas más pequeñas */
+    }
+}
+
+@media (max-width: 480px) {
+    #pageTitle {
+        font-size: 1.5em;
+    }
+
+    .countdown {
+        font-size: 1.8em;
+        flex-wrap: wrap; /* Permite que los elementos del contador salten de línea */
+        gap: 5px;
+    }
+
+    .countdown-item {
+        margin: 5px;
+    }
+
+    .side-image {
+        display: none; /* Opcional: ocultar las imágenes laterales en pantallas muy pequeñas */
+    }
+}
