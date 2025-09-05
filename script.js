@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Fecha y hora objetivo (6 de agosto de 2025 a las 17:00)
-    const targetDate = new Date('2025-08-06T17:00:00').getTime();
+    const targetDate = new Date('2025-10-30T21:00:00').getTime();
 
     const daysSpan = document.getElementById('days');
     const hoursSpan = document.getElementById('hours');
@@ -36,4 +36,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Llamar a updateCountdown una vez al cargar para evitar el "flash" de 00
     updateCountdown();
+
 });
