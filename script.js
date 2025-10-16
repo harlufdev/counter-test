@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Fecha y hora objetivo (6 de agosto de 2025 a las 17:00)
-    const targetDate = new Date('2025-10-30T20:30:00').getTime();
+    // Fecha y hora
+    const targetDate = new Date('2025-10-30T18:00:00').getTime();
 
     const daysSpan = document.getElementById('days');
     const hoursSpan = document.getElementById('hours');
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        // Mostrar los resultados en los elementos HTML
+        // Mostrar los resultados en el HTML
         daysSpan.textContent = String(days).padStart(2, '0');
         hoursSpan.textContent = String(hours).padStart(2, '0');
         minutesSpan.textContent = String(minutes).padStart(2, '0');
@@ -38,4 +38,5 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCountdown();
 
 });
+
 
