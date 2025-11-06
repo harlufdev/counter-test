@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Fecha y hora
-    const targetDate = new Date('2025-10-30T18:00:00').getTime();
+    const targetDate = new Date('2025-12-21T18:00:00').getTime();
 
     const daysSpan = document.getElementById('days');
     const hoursSpan = document.getElementById('hours');
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Si la cuenta atrás ha terminado
         if (distance < 0) {
             clearInterval(countdownInterval);
-            document.getElementById('countdown').innerHTML = "¡ES LA HORA!";
+            document.getElementById('countdown').innerHTML = "Esperando siguiente fecha...";
             document.getElementById('bottomImage').style.display = 'none'; // Oculta la imagen inferior cuando termina
         }
     }
@@ -38,5 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCountdown();
 
 });
+
 
 
