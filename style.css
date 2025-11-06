@@ -50,7 +50,7 @@ body {
     margin-bottom: 30px;
     color: #e5ff00;
     text-decoration-color: #7f8d00;
-    animation: tilt-n-move-shaking 1s infinite;
+    animation: shake 2s infinite;
 }
 
 @keyframes tilt-n-move-shaking {
@@ -59,6 +59,52 @@ body {
   50% { transform: translate(0, 0) rotate(0eg); }
   75% { transform: translate(-5px, 5px) rotate(-5deg); }
   100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes shake {
+	0% {
+		transform: translate(0);
+	}
+
+	10% {
+		transform: translate(-2px, -2px);
+	}
+
+	20% {
+		transform: translate(2px, -2px);
+	}
+
+	30% {
+		transform: translate(-2px, 2px);
+	}
+
+	40% {
+		transform: translate(2px, 2px);
+	}
+
+	50% {
+		transform: translate(-2px, -2px);
+	}
+
+	60% {
+		transform: translate(2px, -2px);
+	}
+
+	70% {
+		transform: translate(-2px, 2px);
+	}
+
+	80% {
+		transform: translate(-2px, -2px);
+	}
+
+	90% {
+		transform: translate(2px, -2px);
+	}
+
+	100% {
+		transform: translate(0);
+	}
 }
 
 .countdown-wrapper {
@@ -201,4 +247,5 @@ body {
     .side-image {
         display: none; /* Opcional: ocultar las imágenes laterales en pantallas muy pequeñas */
     }
+
 }
