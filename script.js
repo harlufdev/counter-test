@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Fecha y hora
-    const targetDate = new Date('2026-03-19T18:00:00').getTime();
+    const targetDate = new Date('2026-03-18T18:00:00').getTime();
 
     const daysSpan = document.getElementById('days');
     const hoursSpan = document.getElementById('hours');
