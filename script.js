@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Fecha y hora
-    const targetDate = new Date('2026-12-26T08:00:00').getTime();
+    const targetDate = new Date('2026-12-25T15:10:00').getTime();
 
     const daysSpan = document.getElementById('days');
     const hoursSpan = document.getElementById('hours');
@@ -41,3 +41,86 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+// ========================================================
+// BLOQUE DE NIEVE NAVIDEÑA (FÁCIL DE BORRAR)
+// Si quieres quitar la nieve, simplemente borra desde aquí
+// hasta el final del archivo.
+// ========================================================
+(() => {
+    const canvas = document.createElement('canvas');
+    canvas.id = 'snowCanvas';
+    canvas.style.position = 'fixed';
+    canvas.style.top = '0';
+    canvas.style.left = '0';
+    canvas.style.width = '100vw';
+    canvas.style.height = '100vh';
+    canvas.style.pointerEvents = 'none';
+    canvas.style.zIndex = '9999'; // Por encima de todo (imágenes y contenedor)
+    document.body.appendChild(canvas);
+
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+    });
+
+    const particles = [];
+    const maxParticles = 120;
+
+    for (let i = 0; i < maxParticles; i++) {
+        particles.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            radius: Math.random() * 3 + 1,
+            speed: Math.random() * 1.5 + 0.5,
+            angle: Math.random() * Math.PI * 2
+        });
+    }
+
+    let animationFrameId;
+
+    function drawSnow() {
+        ctx.clearRect(0, 0, width, height);
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
+        ctx.beginPath();
+        for (let i = 0; i < particles.length; i++) {
+            let p = particles[i];
+            ctx.moveTo(p.x, p.y);
+            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2, true);
+        }
+        ctx.fill();
+        updateSnow();
+        animationFrameId = requestAnimationFrame(drawSnow);
+    }
+
+    function updateSnow() {
+        for (let i = 0; i < particles.length; i++) {
+            let p = particles[i];
+            p.y += p.speed;
+            p.angle += 0.01;
+            p.x += Math.sin(p.angle) * 0.5;
+
+            if (p.y > height) {
+                particles[i] = {
+                    x: Math.random() * width,
+                    y: -10,
+                    radius: p.radius,
+                    speed: p.speed,
+                    angle: p.angle
+                };
+            }
+        }
+    }
+
+    drawSnow();
+
+    window.stopSnow = function() {
+        cancelAnimationFrame(animationFrameId);
+        if (canvas && canvas.parentNode) {
+            canvas.parentNode.removeChild(canvas);
+        }
+    };
+})();
